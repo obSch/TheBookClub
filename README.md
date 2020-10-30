@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # bookclub
 
 A new Flutter project.
@@ -14,3 +15,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# TheBookClub
+A flutter Book Club app, utilizing Firebase APIs
+>>>>>>> 33c779482ab1c57af7e7de4fd447fe0c7f83108e
