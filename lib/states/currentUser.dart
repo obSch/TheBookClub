@@ -11,32 +11,47 @@ class CurrentUser extends ChangeNotifier {
 
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<bool> signUpUser(String email, String password) async {
-    bool retVal = false;
+  Future<String> signUpUser(String email, String password) async {
+    String retVal = "error";
 
     try {
-      UserCredential _userCredential = await _auth
-          .createUserWithEmailAndPassword(email: email, password: password);
-      if (_userCredential.user != null) {
-        retVal = true;
-      }
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+
+      retVal = "success";
     } catch (e) {
-      print(e);
+      retVal = e.message;
     }
 
     return retVal;
   }
 
-  Future<bool> loginUser(String email, String password) async {
-    bool retVal = false;
+  Future<String> loginWithEmail(String email, String password) async {
+    String retVal = "error";
 
     try {
       UserCredential _userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+
+      _uid = _userCredential.user.uid;
+      _email = _userCredential.user.email;
+      retVal = "success";
+    } catch (e) {
+      retVal = e.message;
+    }
+
+    return retVal;
+  }
+
+  Future<String> loginWithGoogle() async {
+    String retVal = "error";
+
+    try {
+      UserCredential _userCredential = await _auth.signInWithGoogle();
       if (_userCredential != null) {
         _uid = _userCredential.user.uid;
         _email = _userCredential.user.email;
-        retVal = true;
+        retVal = "success";
       }
     } catch (e) {
       print(e);
