@@ -87,4 +87,19 @@ class CurrentUser extends ChangeNotifier {
 
     return retVal;
   }
+
+  Future<String> onSignOut() async {
+    String retVal = "error";
+
+    try {
+      // ignore: await_only_futures
+      await _auth.signOut();
+      _uid = null;
+      _email = null;
+    } catch (e) {
+      print(e);
+    }
+
+    return retVal;
+  }
 }

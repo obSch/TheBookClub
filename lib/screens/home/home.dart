@@ -1,3 +1,4 @@
+import 'package:BookClub/screens/root/root.dart';
 import 'package:BookClub/states/currentUser.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,9 +12,19 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Center(
         child: RaisedButton(
-          onPressed: () {
+          onPressed: () async {
             CurrentUser _currentUser =
                 Provider.of<CurrentUser>(context, listen: false);
+            String _returnString = await _currentUser.onSignOut();
+            if (_returnString == "success") {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => OurRoot(),
+                ),
+                (route) => false,
+              );
+            }
           },
           child: Text("Sign Out"),
         ),
