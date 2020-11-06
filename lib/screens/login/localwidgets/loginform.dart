@@ -81,7 +81,7 @@ class _OurLoginFormState extends State<OurLoginForm> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image(
-              image: AssetImage("asssets/google_logo.png"),
+              image: AssetImage("assets/google_logo.png"),
               height: 25.0,
             ),
             Padding(

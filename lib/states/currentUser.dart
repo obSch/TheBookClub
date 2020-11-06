@@ -81,6 +81,7 @@ class CurrentUser extends ChangeNotifier {
       User _firebaseUser = await _auth.currentUser;
       _uid = _firebaseUser.uid;
       _email = _firebaseUser.email;
+      retVal = "success";
     } catch (e) {
       print(e);
     }
@@ -92,10 +93,10 @@ class CurrentUser extends ChangeNotifier {
     String retVal = "error";
 
     try {
-      // ignore: await_only_futures
       await _auth.signOut();
       _uid = null;
       _email = null;
+      retVal = "success";
     } catch (e) {
       print(e);
     }
