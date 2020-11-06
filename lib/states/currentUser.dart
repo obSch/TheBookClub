@@ -72,4 +72,19 @@ class CurrentUser extends ChangeNotifier {
 
     return retVal;
   }
+
+  Future<String> onStartUp() async {
+    String retVal = "error";
+
+    try {
+      // ignore: await_only_futures
+      User _firebaseUser = await _auth.currentUser;
+      _uid = _firebaseUser.uid;
+      _email = _firebaseUser.email;
+    } catch (e) {
+      print(e);
+    }
+
+    return retVal;
+  }
 }
