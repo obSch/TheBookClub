@@ -128,7 +128,7 @@ class HomeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40.0),
             child: RaisedButton(
-              child: Text("SignOut"),
+              child: Text("Sign Out"),
               onPressed: () => _signOut(context),
               color: Theme.of(context).canvasColor,
               shape: RoundedRectangleBorder(

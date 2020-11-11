@@ -1,17 +1,30 @@
+import 'package:BookClub/screens/createGroup/createGroup.dart';
+import 'package:BookClub/screens/joinGroup/joinGroup.dart';
 import 'package:flutter/material.dart';
 
 class OurNoGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    void _goToJoin() {}
-    void _goToCreate() {}
+    void _goToJoin(BuildContext context) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => OurJoinGroup(),
+        ),
+      );
+    }
+
+    void _goToCreate(BuildContext context) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => OurCreateGroup(),
+        ),
+      );
+    }
 
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Spacer(
-            flex: 1,
-          ),
+          Spacer(),
           Padding(
             padding: EdgeInsets.all(80.0),
             child: Image.asset("assets/logo.png"),
@@ -33,9 +46,7 @@ class OurNoGroup extends StatelessWidget {
               style: TextStyle(fontSize: 25.0, color: Colors.grey),
             ),
           ),
-          Spacer(
-            flex: 1,
-          ),
+          Spacer(),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20.0),
             child: Row(
@@ -43,7 +54,7 @@ class OurNoGroup extends StatelessWidget {
               children: <Widget>[
                 RaisedButton(
                   child: Text("Create Group"),
-                  onPressed: () => _goToCreate(),
+                  onPressed: () => _goToCreate(context),
                   color: Theme.of(context).canvasColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
@@ -56,7 +67,7 @@ class OurNoGroup extends StatelessWidget {
                     "Join Group",
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () => _goToJoin(),
+                  onPressed: () => _goToJoin(context),
                 ),
               ],
             ),
