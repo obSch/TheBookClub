@@ -2,6 +2,7 @@ import 'package:BookClub/screens/home/home.dart';
 import 'package:BookClub/screens/login/login.dart';
 import 'package:BookClub/screens/noGroup/noGroup.dart';
 import 'package:BookClub/screens/splash/splashScreen.dart';
+import 'package:BookClub/states/currentGroup.dart';
 import 'package:BookClub/states/currentUser.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -71,7 +72,10 @@ class _OurRootState extends State<OurRoot> {
         retVal = OurNoGroup();
         break;
       case AuthStatus.inGroup:
-        retVal = HomeScreen();
+        retVal = ChangeNotifierProvider(
+          create: (context) => CurrentGroup(),
+          child: HomeScreen(),
+        );
         break;
       default:
     }

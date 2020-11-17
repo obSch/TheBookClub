@@ -1,3 +1,5 @@
+import 'package:BookClub/models/book.dart';
+import 'package:BookClub/models/group.dart';
 import 'package:BookClub/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -87,5 +89,46 @@ class OurDatabase {
     }
 
     return retVal;
+  }
+
+  // get group info
+  Future<OurGroup> getGroupInfo(String groupId) async {
+    OurGroup group = OurGroup();
+
+    try {
+      DocumentSnapshot _docSnapshot =
+          await _firestore.collection("groups").doc(groupId).get();
+      group.id = groupId;
+      group.groupName = _docSnapshot.get("name");
+      group.groupLeader = _docSnapshot.get("leader");
+      group.groupMembers = List<String>.from(_docSnapshot.get("members"));
+      group.groupCreated = _docSnapshot.get("groupCreated");
+      group.currentBookId = _docSnapshot.get("currentBookId");
+      group.currentBookDue = _docSnapshot.get("currentBookDue");
+    } catch (e) {
+      print(e);
+    }
+    return group;
+  }
+
+  // get book info
+  Future<OurBook> getCurrentBookInfo(String groupId, String bookId) async {
+    OurBook book = OurBook();
+
+    try {
+      DocumentSnapshot _docSnapshot = await _firestore
+          .collection("groups")
+          .doc(groupId)
+          .collection("books")
+          .doc(bookId)
+          .get();
+      book.bookId = bookId;
+      book.bookName = _docSnapshot.get("name");
+      book.bookLength = _docSnapshot.get("length");
+      book.dateCompleted = _docSnapshot.get("dateCompleted");
+    } catch (e) {
+      print(e);
+    }
+    return book;
   }
 }

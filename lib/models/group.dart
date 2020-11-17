@@ -4,14 +4,18 @@ class OurGroup {
   String id;
   String groupName;
   String groupLeader;
-  List<String> groupMemebers;
+  List<String> groupMembers;
   Timestamp groupCreated;
+  String currentBookId;
+  Timestamp currentBookDue;
 
   OurGroup({
     this.id,
     this.groupName,
     this.groupLeader,
-    this.groupMemebers,
+    this.groupMembers,
     this.groupCreated,
+    this.currentBookId,
+    this.currentBookDue,
   });
 }
